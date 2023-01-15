@@ -1,0 +1,13 @@
+.box {
+    display: flex;
+    align-items: center;
+}
+
+.iconLink {
+    margin-right: 1rem;
+}
+.iconLink:hover {
+    color: aliceblue;
+    scale: 1.1;
+    transition: all 0.6s;
+}
