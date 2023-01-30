@@ -3,7 +3,7 @@ const User = require("../models/UserModel");
 module.exports.getLikedMovies = async (req, res) => {
   try {
     const { email } = req.params;
-    const user = await await User.findOne({ email });
+    const user =  await User.findOne({ email });
     if (user) {
       return res.json({ msg: "success", movies: user.likedMovies });
     } else return res.json({ msg: "User with given email not found." });
@@ -15,7 +15,7 @@ module.exports.getLikedMovies = async (req, res) => {
 module.exports.addToLikedMovies = async (req, res) => {
   try {
     const { email, data } = req.body;
-    const user = await await User.findOne({ email });
+    const user =  await User.findOne({ email });
     if (user) {
       const { likedMovies } = user;
       const movieAlreadyLiked = likedMovies.find(({ id }) => id === data.id);

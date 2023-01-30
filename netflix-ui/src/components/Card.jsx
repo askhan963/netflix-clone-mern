@@ -11,7 +11,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useDispatch } from "react-redux";
 import { removeMovieFromLiked } from "../store";
-import video from "../assets/video.mp4";
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
@@ -105,6 +104,7 @@ const Container = styled.div`
   height: 100%;
   cursor: pointer;
   position: relative;
+  transition: all 0.6s ease-in;
   img {
     border-radius: 0.2rem;
     width: 100%;
@@ -121,7 +121,7 @@ const Container = styled.div`
     border-radius: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
-    transition: 0.3s ease-in-out;
+    transition: all 0.6s ease-in;
     .image-video-container {
       position: relative;
       height: 140px;

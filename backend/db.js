@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
  exports.Database= function Database() {
     mongoose.set('strictQuery', false);
     mongoose
-      .connect("mongodb://localhost:27017/netflix", {
+      .connect("mongodb+srv://ZafarUllahKhan:Zafarkhan%40113@cluster0.4dnnhg0.mongodb.net/netflix?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })
