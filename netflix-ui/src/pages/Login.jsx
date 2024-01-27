@@ -5,6 +5,8 @@ import { firebaseAuth } from "../utils/firebase-config";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import Footer from '../Footer/Footer';
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,8 +16,12 @@ function Login() {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
+      toast.success("Signin successful! Welcome aboard!");
+
     } catch (error) {
       console.log(error.code);
+      toast.error("Signin failed. Please try again.");
+
     }
   };
 
@@ -37,7 +43,7 @@ function Login() {
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                className="px-4 py-2 rounded-lg"
+                className="px-4 py-2 rounded-lg text-stone-950"
                 required
               />
               <input
@@ -45,7 +51,7 @@ function Login() {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="px-4 py-2 rounded-lg"
+                className="px-4 py-2 rounded-lg text-stone-950"
                 required
               />
               <button

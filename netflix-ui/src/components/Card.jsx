@@ -11,6 +11,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useDispatch } from "react-redux";
 import { removeMovieFromLiked } from "../store";
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default React.memo(function Card({ index, movieData, isLiked = false }) {
   const navigate = useNavigate();
@@ -26,12 +28,22 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
 
   const addToList = async () => {
     try {
+      if (!email || !movieData) {
+        // Add proper validation for email and movieData
+        throw new Error("Invalid request parameters");
+      }
+  
       await axios.post("http://localhost:5000/api/user/add", {
         email,
         data: movieData,
       });
+  
+      toast.success(`${movieData.name} added to the liked list.`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      // Handle error, show appropriate message to the user
+      toast.error(`Error adding movie to the liked list: ${error.response.data.error || 'Unknown error'}`);
+
     }
   };
 

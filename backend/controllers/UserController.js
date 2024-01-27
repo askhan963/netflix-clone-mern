@@ -12,9 +12,16 @@ module.exports.getLikedMovies = async (req, res) => {
   }
 };
 
+// Server route
 module.exports.addToLikedMovies = async (req, res) => {
   try {
     const { email, data } = req.body;
+
+    // Validate request parameters
+    if (!email || !data) {
+      return res.status(400).json({ msg: "Invalid request parameters" });
+    }
+
     const user = await User.findOne({ email });
 
     if (user) {
@@ -30,16 +37,17 @@ module.exports.addToLikedMovies = async (req, res) => {
           { new: true }
         );
 
-        return res.json({ msg: "Movie successfully added to liked list.", user: updatedUser });
+        return res.status(200).json({ msg: "Movie successfully added to liked list.", user: updatedUser });
       } else {
-        return res.json({ msg: "Movie already added to the liked list." });
+        return res.status(200).json({ msg: "Movie already added to the liked list." });
       }
     } else {
       const newUser = await User.create({ email, likedMovies: [data] });
-      return res.json({ msg: "Movie successfully added to liked list.", user: newUser });
+      return res.status(200).json({ msg: "Movie successfully added to liked list.", user: newUser });
     }
   } catch (error) {
-    return res.json({ msg: "Error adding movie to the liked list" });
+    console.error(error);
+    return res.status(500).json({ msg: "Error adding movie to the liked list", error: error.message });
   }
 };
 

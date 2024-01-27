@@ -5,6 +5,8 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_KEY, TMDB_BASE_URL } from "../utils/constants";
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // changes begin 
 const initialState = {
   movies: [],
@@ -98,6 +100,7 @@ export const removeMovieFromLiked = createAsyncThunk(
       email,
       movieId,
     });
+    toast.success(`${movieId} removed from the liked list.`);
     return movies;
   }
 );

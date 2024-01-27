@@ -6,6 +6,8 @@ import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import Footer from "../Footer/Footer";
 import Developers from "../components/Developers";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -16,8 +18,12 @@ export default function Signup() {
   const handleSignUp = async () => {
     try {
       await createUserWithEmailAndPassword(firebaseAuth, email, password);
+        // Show success message
+    toast.success("Signup successful! Welcome aboard!");
     } catch (error) {
       console.log(error);
+      // Show error message
+    toast.error("Signup failed. Please try again.");
     }
   };
 

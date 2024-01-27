@@ -17,11 +17,13 @@ export default function UserListedMovies() {
   const [email, setEmail] = useState(undefined);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
+    // console.log("Inside onAuthStateChanged", currentUser);
     if (currentUser) setEmail(currentUser.email);
     else navigate("/login");
   });
 
   useEffect(() => {
+    // console.log("Inside useEffect", email);
     if (email) {
       dispatch(getUsersLikedMovies(email));
     }
@@ -38,7 +40,7 @@ export default function UserListedMovies() {
       <div className="content flex column">
         <h1>My List</h1>
         <div className="grid flex">
-          {movies.length > 0 ? (
+          {movies && movies.length > 0  ? (
             movies.map((movie, index) => (
               <Card
                 movieData={movie}
@@ -64,6 +66,7 @@ const Container = styled.div`
     gap: 3rem;
     h1 {
       margin-left: 3rem;
+      color: white;
     }
     .grid {
       flex-wrap: wrap;
