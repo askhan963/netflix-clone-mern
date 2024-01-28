@@ -84,7 +84,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                     title="Remove from List"
                     onClick={() =>
                       dispatch(
-                        removeMovieFromLiked({ movieId: movieData.id, email })
+                        removeMovieFromLiked({ movieId: movieData.id, movieName: movieData.name , email })
                       )
                     }
                   />
