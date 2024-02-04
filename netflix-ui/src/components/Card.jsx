@@ -33,7 +33,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
         throw new Error("Invalid request parameters");
       }
   
-      await axios.post("http://localhost:5000/api/user/add", {
+      await axios.post("https://helpful-red-jackrabbit.cyclic.app/api/user/add", {
         email,
         data: movieData,
       });

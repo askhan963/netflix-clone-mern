@@ -83,7 +83,7 @@ export const getUsersLikedMovies = createAsyncThunk(
   async (email) => {
     const {
       data: { movies },
-    } = await axios.get(`http://localhost:5000/api/user/liked/${email}`);
+    } = await axios.get(`https://helpful-red-jackrabbit.cyclic.app/api/user/liked/${email}`);
     if(movies)
      return movies;
     else 
@@ -96,7 +96,7 @@ export const removeMovieFromLiked = createAsyncThunk(
   async ({ movieId,movieName, email }) => {
     const {
       data: { movies },
-    } = await axios.put("http://localhost:5000/api/user/remove", {
+    } = await axios.put("https://helpful-red-jackrabbit.cyclic.app/api/user/remove", {
       email,
       movieId,
     });
